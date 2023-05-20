@@ -11,8 +11,13 @@ const image = require('gulp-image');
 
 // Tarefas para o CSS
 function tarefasCSS(cb){
-    return gulp.src('./vendor/**/*.css')
-        .pipe(concat('libs.css'))
+    return gulp.src([
+            './node_modules/bootstrap/dist/css/bootstrap.css',
+            './vendor/owl/css/owl.css',
+            './node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
+            './src/css/style.css'
+        ])
+        .pipe(concat('styles.css'))
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'})) //  O arquivo de saída será libs.min.css
         .pipe(gulp.dest('./dist/css'))
@@ -21,8 +26,14 @@ exports.styles = tarefasCSS
 
 // Tarefas para o JavaScript
 function tarefasJS(){
-    return gulp.src('./vendor/**/*.js')
-        .pipe(concat('libs.css'))
+    return gulp.src([
+            './node_modules/jquery/dist/jquery.js',
+            './node_modules/bootstrap/dist/js/bootstrap.js',
+            './vendor/owl/js/owl.js',
+            './vendor/jquery-mask/jquery.mask.min.js',
+            './src/js/custom.js'
+        ])
+        .pipe(concat('scripts.css'))
         .pipe(uglify())
         .pipe(rename({suffix: '.min'})) //  O arquivo de saída será libs.min.js
         .pipe(gulp.dest('./dist/js'))
